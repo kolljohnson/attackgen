@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
+    "express": "^4.14.0",
     "inquirer": "^1.2.2",
     "mocha": "^3.1.2"
   }

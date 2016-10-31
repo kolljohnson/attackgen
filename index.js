@@ -2,6 +2,8 @@
 
 const inquirer = require('inquirer');
 const rx = require('rx');
+const fs = require('fs');
+const dir = __dirname;
 
 inquirer.prompt([{
     name: 'candidateName',
@@ -26,7 +28,25 @@ inquirer.prompt([{
                 return answers.partyChoice === 'Other'
             }
         }
+    }, {
+        name: 'sponsor',
+        message: "Who's sponsoring this ad?",
+        type: 'input'
     }
 ]).then(function (answers) {
     console.log(answers);
+    const fileName = dir + "/candidates/" +  answers["candidateName"] + '.html';
+    const stream = fs.createWriteStream(fileName);
+
+    stream.once('open', function (fd) {
+      let html = buildHtml(answers);
+        stream.end(html);
+    });
 });
+
+function  buildHtml(content) {
+    let header = '<title>' + content['candidateName'] +'</title>';
+    let body = '<h1>' + content['candidateName'] + '</h1>';
+
+    return '<!DOCTYPE html><header>' + header + '</header><body>' + body + '</body></html>';
+}
