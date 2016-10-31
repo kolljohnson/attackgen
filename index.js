@@ -3,6 +3,7 @@
 const inquirer = require('inquirer');
 const rx = require('rx');
 const fs = require('fs');
+const pug = require('pug');
 const dir = __dirname;
 
 inquirer.prompt([{
@@ -36,17 +37,14 @@ inquirer.prompt([{
 ]).then(function (answers) {
     console.log(answers);
     const fileName = dir + "/candidates/" +  answers["candidateName"] + '.html';
-    const stream = fs.createWriteStream(fileName);
+    const stream = fs.createWriteStream(fileName, answers);
 
     stream.once('open', function (fd) {
-      let html = buildHtml(answers);
+        console.log(answers)
+        let html = pug.renderFile('index.pug', {
+            candidateName: answers["candidateName"]
+        });
         stream.end(html);
     });
 });
 
-function  buildHtml(content) {
-    let header = '<title>' + content['candidateName'] +'</title>';
-    let body = '<h1>' + content['candidateName'] + '</h1>';
-
-    return '<!DOCTYPE html><header>' + header + '</header><body>' + body + '</body></html>';
-}
