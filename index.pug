@@ -3,5 +3,15 @@ html(lang="en")
     head
         title= candidateName
         link(rel= "stylesheet" href= "../css/style.css")
-    body
-        h1 #{candidateName}
+
+    if party === "Republican" || realParty === "Republican"
+       body
+    else
+       body(class= "blue")
+
+    h1 #{candidateName}
+
+    p #{candidateName} is the last person we need in the position of #{position}. #{candidateName} will bring more of the
+    | same Washington politics we don't need, using your tax dollars for personal profit.
+
+    footer This message is approved by #{sponsor}

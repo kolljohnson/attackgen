@@ -1,12 +1,42 @@
-$background: #C00D30;
+$republican: #C00D30;
+$democrat: #172273;
+
+* {
+  padding: 0;
+  margin: 0;
+}
 
 body {
-  background-color: $background;
+  background-color: $republican;
   color: white;
   text-align: center;
 
   h1{
-
     font-size: 3em;
+    margin-bottom: 3%;
   }
+
+  p footer{
+    font-size: 2em;
+  }
+
+  footer {
+    font-size: 1em;
+    background-color: $democrat;
+    width: 100%;
+    max-width: 100%;
+    padding: 2%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.blue {
+  background-color: $democrat;
+}
+
+.red {
+  background-color: $republican;
 }

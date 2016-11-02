@@ -10,39 +10,55 @@ inquirer.prompt([{
     name: 'candidateName',
     message: "What's your opponent's name?",
     type: 'input'
-},
+    },
     {
-    name: 'partyChoice',
+    name: 'party',
     message: 'Which party is your opponent?',
     type: 'list',
     choices: ['Democrat', 'Republican', 'Independent', 'Other']
-},
+    },
     {
         name: 'realParty',
         message: 'Seriously, which party is your opponent?',
         type: 'list',
         choices: ['Democrat', 'Republican'],
         when: function(answers) {
-            if(answers.partyChoice === 'Independent') {
-                return answers.partyChoice === 'Independent'
-            } else if(answers.partyChoice === 'Other') {
-                return answers.partyChoice === 'Other'
+            if(answers.party === 'Independent') {
+                return answers.party === 'Independent'
+            } else if(answers.party === 'Other') {
+                return answers.party === 'Other'
             }
         }
     }, {
+        name: 'position',
+        message: 'What position are they campaigning for?',
+        type: 'list',
+        choices: ['President', 'Senator', 'Representative',
+                   'State Representative', 'State Senator',
+                   'Governor', 'Mayor', 'Sheriff']
+    },
+    {
         name: 'sponsor',
         message: "Who's sponsoring this ad?",
         type: 'input'
+    }, {
+        name: 'filePath',
+        message: 'Where do you want your attack add generated?',
+        type: 'input',
+        default: dir + '/candidates'
     }
 ]).then(function (answers) {
     console.log(answers);
-    const fileName = dir + "/candidates/" +  answers["candidateName"] + '.html';
+    const fileName = answers['filePath'] + '/' + answers['candidateName'] + '.html';
     const stream = fs.createWriteStream(fileName, answers);
 
     stream.once('open', function (fd) {
-        console.log(answers)
         let html = pug.renderFile('index.pug', {
-            candidateName: answers["candidateName"]
+            candidateName: answers['candidateName'],
+            party: answers['party'],
+            realParty: answers['realParty'],
+            position: answers['position'],
+            sponsor: answers['sponsor'],
         });
         stream.end(html);
     });
