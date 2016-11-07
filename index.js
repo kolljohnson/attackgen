@@ -5,6 +5,16 @@ const rx = require('rx');
 const fs = require('fs');
 const pug = require('pug');
 const dir = __dirname;
+var issues = [];
+
+const republican = ["Plans to defund Planned Parenthood",
+                    "Will cut welfare and other programs families depend on",
+                    "Doesn't believe in global warming",
+                    "Cares more about lobbyists than voters"];
+const democrat = ["Will raise taxes for unneeded projects",
+                    "Plans to add even more government regulation",
+                    "Too strong on gun control",
+                    "Cares more about lobbyists than voters"];
 
 inquirer.prompt([{
     name: 'candidateName',
@@ -53,12 +63,18 @@ inquirer.prompt([{
     const stream = fs.createWriteStream(fileName, answers);
 
     stream.once('open', function (fd) {
+        if(answers['party'] === "Republican" || answers['realParty'] === "Republican") {
+            issues = republican;
+        } else {
+            issues = democrat;
+        }
         let html = pug.renderFile('index.pug', {
             candidateName: answers['candidateName'],
             party: answers['party'],
             realParty: answers['realParty'],
             position: answers['position'],
             sponsor: answers['sponsor'],
+            issues: issues
         });
         stream.end(html);
     });

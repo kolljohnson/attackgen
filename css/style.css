@@ -9,6 +9,8 @@ body {
   body h1 {
     font-size: 3em;
     margin-bottom: 1%; }
+  body h2 {
+    margin-top: 2%; }
   body p footer {
     font-size: 2em; }
   body footer {
@@ -31,5 +33,14 @@ body {
 img {
   width: 15%;
   margin-bottom: 2%; }
+
+ul {
+  margin-top: 1%;
+  list-style: none; }
+  ul li {
+    margin-bottom: 1%; }
+
+.bottomStar {
+  margin-top: 4%; }
 
 /*# sourceMappingURL=style.css.map */

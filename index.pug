@@ -1,10 +1,17 @@
+- var isRepublican = false
+
+if party === "Republican" || realParty === "Republican"
+    - isRepublican = true
+else
+    - isRepublican = false
+
 doctype html
 html(lang="en")
     head
         title= candidateName
         link(rel= "stylesheet" href= "../css/style.css")
 
-    if party === "Republican" || realParty === "Republican"
+    if isRepublican
        body
     else
        body(class= "blue")
@@ -16,4 +23,18 @@ html(lang="en")
     p #{candidateName} is the last person we need in the position of #{position}. #{candidateName} will bring more of the
     | same Washington politics we don't need, using your tax dollars for personal profit.
 
-    footer This message is approved by #{sponsor}
+    p Still not convinced? Here is even more reasons why #{candidateName} should never be elected.
+
+    ul
+      each val in issues
+            li= val
+
+
+    img(class="bottomStar" src="../images/white_stars.png")
+
+    h2 Make sure to vote this Election Day and stop #{candidateName} before it is too late!
+
+    if isRepublican
+        footer This message is approved by #{sponsor}
+    else
+        footer(class= "red") This message is approved by #{sponsor}

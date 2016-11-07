@@ -16,6 +16,10 @@ body {
     margin-bottom: 1%;
   }
 
+  h2 {
+    margin-top: 2%;
+  }
+
   p footer{
     font-size: 2em;
   }
@@ -44,4 +48,17 @@ body {
 img {
   width: 15%;
   margin-bottom: 2%;
+}
+
+ul {
+  margin-top: 1%;
+  list-style: none;
+
+  li {
+    margin-bottom: 1%;
+  }
+}
+
+.bottomStar {
+  margin-top: 4%;
 }

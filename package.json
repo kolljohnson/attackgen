@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "generate your own political attack ads with this handy command-line tool!",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kolljohnson/attackgen.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
